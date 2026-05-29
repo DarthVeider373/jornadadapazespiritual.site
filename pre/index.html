@@ -1,0 +1,1235 @@
+<!DOCTYPE html><html lang="en"><head><meta name="x-poe-datastore-behavior" content="local_only"><meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://code.jquery.com https://unpkg.com https://d3js.org https://threejs.org https://cdn.plot.ly https://stackpath.bootstrapcdn.com https://maps.googleapis.com https://cdn.tailwindcss.com https://ajax.googleapis.com https://kit.fontawesome.com https://cdn.datatables.net https://maxcdn.bootstrapcdn.com https://code.highcharts.com https://tako-static-assets-production.s3.amazonaws.com https://www.youtube.com https://fonts.googleapis.com https://fonts.gstatic.com https://pfst.cf2.poecdn.net https://puc.poecdn.net https://i.imgur.com https://wikimedia.org https://*.icons8.com https://*.giphy.com https://picsum.photos https://images.unsplash.com; frame-src 'self' https://www.youtube.com https://trytako.com; child-src 'self'; manifest-src 'self'; worker-src 'self'; upgrade-insecure-requests; block-all-mixed-content;">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Wensleydale Ice Cream Limited - Handcrafted artisan ice cream from the heart of the Yorkshire Dales. Made with fresh local ingredients in Thornton Rust, Leyburn, North Yorkshire.">
+    <meta name="keywords" content="Wensleydale Ice Cream, artisan ice cream, Yorkshire Dales, Leyburn, North Yorkshire, handmade ice cream, local dairy">
+    <meta name="author" content="Wensleydale Ice Cream Limited">
+    <meta name="geo.region" content="GB-NYK">
+    <meta name="geo.placename" content="Thornton Rust, Leyburn, North Yorkshire">
+    <title>Wensleydale Ice Cream Limited | Artisan Ice Cream from the Yorkshire Dales</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,&lt;svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'&gt;&lt;rect width='100' height='100' rx='15' fill='%234a7c59'/&gt;&lt;text x='50' y='68' font-size='55' font-family='Georgia,serif' font-weight='bold' fill='white' text-anchor='middle'&gt;W&lt;/text&gt;&lt;/svg&gt;">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #4a7c59;
+            --primary-dark: #3a6147;
+            --secondary: #f5e6c8;
+            --accent: #d4a574;
+            --text-dark: #2c3e2d;
+            --text-light: #5a6b5c;
+            --white: #ffffff;
+            --cream: #fdf8f0;
+            --light-green: #e8f0e9;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.97);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0.8rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 45px;
+            height: 45px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.3rem;
+            font-family: Georgia, serif;
+        }
+
+        .logo-text {
+            font-family: Georgia, serif;
+            font-size: 1.2rem;
+            color: var(--primary-dark);
+            font-weight: 700;
+        }
+
+        .logo-text span {
+            display: block;
+            font-size: 0.7rem;
+            color: var(--text-light);
+            font-family: 'Segoe UI', sans-serif;
+            font-weight: 400;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .mobile-menu-btn span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background: var(--text-dark);
+            margin: 5px 0;
+            border-radius: 3px;
+            transition: all 0.3s;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, var(--cream) 0%, var(--light-green) 50%, var(--secondary) 100%);
+            padding: 6rem 2rem 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 70%;
+            height: 200%;
+            background: radial-gradient(ellipse, rgba(74, 124, 89, 0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-content h1 {
+            font-family: Georgia, serif;
+            font-size: 3.2rem;
+            color: var(--primary-dark);
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-content h1 span {
+            color: var(--accent);
+        }
+
+        .hero-content p {
+            font-size: 1.15rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            max-width: 500px;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 0.9rem 2.2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(74, 124, 89, 0.3);
+        }
+
+        .btn-secondary {
+            display: inline-block;
+            background: transparent;
+            color: var(--primary);
+            padding: 0.9rem 2.2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            border: 2px solid var(--primary);
+            margin-left: 1rem;
+            transition: all 0.3s;
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .hero-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-illustration {
+            width: 100%;
+            max-width: 450px;
+            aspect-ratio: 1;
+            background: radial-gradient(circle at 30% 40%, var(--secondary) 0%, var(--accent) 40%, var(--primary) 100%);
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: morph 8s ease-in-out infinite;
+            box-shadow: 0 20px 60px rgba(74, 124, 89, 0.2);
+        }
+
+        .hero-illustration-text {
+            color: white;
+            font-size: 5rem;
+            text-align: center;
+            line-height: 1.2;
+        }
+
+        @keyframes morph {
+            0% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+            50% { border-radius: 70% 30% 30% 70% / 70% 70% 30% 30%; }
+            100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+        }
+
+        /* About Section */
+        .about {
+            padding: 6rem 2rem;
+            background: var(--white);
+        }
+
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-family: Georgia, serif;
+            font-size: 2.5rem;
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, var(--light-green), var(--secondary));
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-image::after {
+            content: '🐄 🌿 🍦';
+            font-size: 3rem;
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            opacity: 0.7;
+        }
+
+        .about-content h3 {
+            font-family: Georgia, serif;
+            font-size: 1.8rem;
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+        }
+
+        .about-content p {
+            color: var(--text-light);
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+        }
+
+        .about-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+
+        .feature-item::before {
+            content: '✓';
+            color: var(--primary);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* Products Section */
+        .products {
+            padding: 6rem 2rem;
+            background: var(--cream);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+
+        .product-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--light-green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2.2rem;
+        }
+
+        .product-card h3 {
+            font-family: Georgia, serif;
+            color: var(--primary-dark);
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .product-card p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 6rem 2rem;
+            background: var(--white);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .testimonial-card {
+            background: var(--light-green);
+            border-radius: 20px;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            font-family: Georgia, serif;
+            font-size: 4rem;
+            color: var(--primary);
+            opacity: 0.3;
+            position: absolute;
+            top: 10px;
+            left: 20px;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+            padding-top: 1.5rem;
+            font-size: 1.02rem;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .author-avatar {
+            width: 45px;
+            height: 45px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .author-info strong {
+            color: var(--text-dark);
+            display: block;
+        }
+
+        .author-info span {
+            font-size: 0.85rem;
+            color: var(--text-light);
+        }
+
+        .stars {
+            color: #f5a623;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 6rem 2rem;
+            background: var(--cream);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .contact-info h3 {
+            font-family: Georgia, serif;
+            font-size: 1.5rem;
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+        }
+
+        .contact-info p {
+            color: var(--text-light);
+            margin-bottom: 2rem;
+        }
+
+        .contact-detail {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-detail-icon {
+            width: 45px;
+            height: 45px;
+            min-width: 45px;
+            background: var(--light-green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .contact-detail-text strong {
+            color: var(--text-dark);
+            display: block;
+            margin-bottom: 0.2rem;
+        }
+
+        .contact-detail-text span {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        .contact-form {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem 1.2rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+            font-family: inherit;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--text-dark);
+            color: #ccd5cc;
+            padding: 4rem 2rem 2rem;
+        }
+
+        .footer-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-about h3 {
+            color: white;
+            font-family: Georgia, serif;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-about p {
+            font-size: 0.95rem;
+            line-height: 1.8;
+        }
+
+        .footer-links h4 {
+            color: white;
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+        }
+
+        .footer-links a {
+            display: block;
+            color: #aab8ab;
+            text-decoration: none;
+            margin-bottom: 0.6rem;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+        }
+
+        .footer-legal {
+            font-size: 0.85rem;
+            margin-bottom: 0.8rem;
+            color: #8a9a8b;
+        }
+
+        .footer-legal a {
+            color: #aab8ab;
+            text-decoration: none;
+        }
+
+        .footer-legal a:hover {
+            color: white;
+        }
+
+        .footer-copyright {
+            font-size: 0.9rem;
+            color: #8a9a8b;
+        }
+
+        /* Modal for Privacy/Terms */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 10000;
+            overflow-y: auto;
+            padding: 2rem;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            max-width: 800px;
+            width: 100%;
+            margin: 2rem auto;
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: var(--text-light);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: background 0.3s;
+        }
+
+        .modal-close:hover {
+            background: var(--light-green);
+        }
+
+        .modal-content h2 {
+            font-family: Georgia, serif;
+            color: var(--primary-dark);
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+
+        .modal-content h3 {
+            color: var(--primary-dark);
+            margin: 1.5rem 0 0.8rem;
+            font-size: 1.2rem;
+        }
+
+        .modal-content p {
+            color: var(--text-light);
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 968px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-content p {
+                margin: 0 auto 2rem;
+            }
+
+            .hero-visual {
+                order: -1;
+            }
+
+            .hero-illustration {
+                max-width: 300px;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: white;
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1.5rem;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .section-header h2 {
+                font-size: 2rem;
+            }
+
+            .btn-secondary {
+                margin-left: 0;
+                margin-top: 1rem;
+                display: inline-block;
+            }
+
+            .about-features {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Scrolled State */
+        .navbar.scrolled {
+            padding: 0.5rem 0;
+            box-shadow: 0 4px 30px rgba(0,0,0,0.12);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <div class="logo-icon">W</div>
+                <div class="logo-text">
+                    Wensleydale
+                    <span>Ice Cream</span>
+                </div>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#products">Our Flavours</a></li>
+                <li><a href="#testimonials">Reviews</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>Handcrafted Ice Cream from the <span>Yorkshire Dales</span></h1>
+                <p>Made with love and the finest local ingredients in the heart of Wensleydale. Every scoop tells the story of our beautiful countryside.</p>
+                <a href="#products" class="btn-primary">Explore Our Flavours</a>
+                <a href="#contact" class="btn-secondary">Get In Touch</a>
+            </div>
+            <div class="hero-visual">
+                <div class="hero-illustration">
+                    <div class="hero-illustration-text">🍦</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="section-container">
+            <div class="section-header">
+                <h2>Our Story</h2>
+                <p>A family passion born in the rolling hills of North Yorkshire</p>
+            </div>
+            <div class="about-grid">
+                <div class="about-image">
+                    🏔️
+                </div>
+                <div class="about-content">
+                    <h3>From Our Farm to Your Table</h3>
+                    <p>Nestled in the picturesque village of Thornton Rust, near Leyburn in the Yorkshire Dales, Wensleydale Ice Cream is a family-run business dedicated to producing the finest artisan ice cream.</p>
+                    <p>Since 2012, we've been crafting small-batch ice cream using traditional methods and the freshest ingredients sourced from local farms across Wensleydale. Our commitment to quality means every tub is made with care, passion, and a deep love for our beautiful dale.</p>
+                    <div class="about-features">
+                        <div class="feature-item">Locally sourced milk</div>
+                        <div class="feature-item">Small batch crafted</div>
+                        <div class="feature-item">Natural ingredients</div>
+                        <div class="feature-item">Family recipes</div>
+                        <div class="feature-item">Yorkshire Dales born</div>
+                        <div class="feature-item">Award-winning taste</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products" id="products">
+        <div class="section-container">
+            <div class="section-header">
+                <h2>Our Flavours</h2>
+                <p>Discover our range of handcrafted ice cream and frozen treats</p>
+            </div>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-icon">🍨</div>
+                    <h3>Classic Vanilla</h3>
+                    <p>Rich, creamy vanilla made with real Madagascar vanilla pods and fresh Dales milk. Simple perfection.</p>
+                </div>
+                <div class="product-card">
+                    <div class="product-icon">🍓</div>
+                    <h3>Strawberry &amp; Cream</h3>
+                    <p>Ripe English strawberries folded through our luxurious cream base. A taste of summer in every spoonful.</p>
+                </div>
+                <div class="product-card">
+                    <div class="product-icon">🍫</div>
+                    <h3>Belgian Chocolate</h3>
+                    <p>Indulgent dark Belgian chocolate blended into our smooth cream for a truly decadent experience.</p>
+                </div>
+                <div class="product-card">
+                    <div class="product-icon">🍯</div>
+                    <h3>Yorkshire Honey</h3>
+                    <p>Local wildflower honey from Dales beekeepers swirled through our signature cream base.</p>
+                </div>
+                <div class="product-card">
+                    <div class="product-icon">🫐</div>
+                    <h3>Wild Blueberry</h3>
+                    <p>Bursting with plump blueberries, this fruity favourite is refreshing and indulgent in equal measure.</p>
+                </div>
+                <div class="product-card">
+                    <div class="product-icon">🧀</div>
+                    <h3>Wensleydale &amp; Ginger</h3>
+                    <p>Our signature flavour! Creamy Wensleydale cheese paired with warming stem ginger. Uniquely Yorkshire.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials" id="testimonials">
+        <div class="section-container">
+            <div class="section-header">
+                <h2>What People Say</h2>
+                <p>Don't just take our word for it — hear from our happy customers</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <p class="testimonial-text">The best ice cream I've ever tasted! You can really tell it's made with fresh, local ingredients. The Yorkshire Honey flavour is absolutely divine.</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">S</div>
+                        <div class="author-info">
+                            <strong>Sarah M.</strong>
+                            <span>Leyburn, North Yorkshire</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <p class="testimonial-text">We discovered Wensleydale Ice Cream on a holiday in the Dales and now order regularly. The Wensleydale &amp; Ginger is unlike anything else — utterly delicious!</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">J</div>
+                        <div class="author-info">
+                            <strong>James T.</strong>
+                            <span>Harrogate</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <p class="testimonial-text">Proper Yorkshire ice cream at its finest. We serve it at our tearoom and customers absolutely love it. The quality is consistently exceptional.</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">M</div>
+                        <div class="author-info">
+                            <strong>Margaret W.</strong>
+                            <span>Hawes, Wensleydale</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="section-container">
+            <div class="section-header">
+                <h2>Get In Touch</h2>
+                <p>We'd love to hear from you — whether you're a retailer, event organiser, or ice cream lover</p>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h3>Visit Us or Drop a Line</h3>
+                    <p>Whether you'd like to stock our ice cream, book us for an event, or simply ask a question, we're always happy to chat.</p>
+                    <div class="contact-detail">
+                        <div class="contact-detail-icon">📍</div>
+                        <div class="contact-detail-text">
+                            <strong>Our Address</strong>
+                            <span>C/O TENIGO LTD, THE OLD CALF HOUSE MANOR FARM, THORNTON RUST, LEYBURN, NORTH YORKSHIRE, DL8 3AN</span>
+                        </div>
+                    </div>
+                    <div class="contact-detail">
+                        <div class="contact-detail-icon">✉️</div>
+                        <div class="contact-detail-text">
+                            <strong>Email</strong>
+                            <span>contato@jornadadapazespiritual.site</span>
+                        </div>
+                    </div>
+                    <div class="contact-detail">
+                        <div class="contact-detail-icon">🕐</div>
+                        <div class="contact-detail-text">
+                            <strong>Hours</strong>
+                            <span>Monday – Friday: 9:00 AM – 5:00 PM<br>Saturday: 10:00 AM – 3:00 PM</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Your Name</label>
+                            <input type="text" id="name" name="name" placeholder="John Smith" required="">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" placeholder="john@example.com" required="">
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" name="subject" placeholder="How can we help?">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" placeholder="Tell us more..." required=""></textarea>
+                        </div>
+                        <button type="submit" class="btn-primary" style="width:100%;">Send Message</button>
+                    </form>
+                    <div id="formSuccess" style="display:none; text-align:center; padding:2rem;">
+                        <div style="font-size:3rem; margin-bottom:1rem;">✓</div>
+                        <h3 style="color:var(--primary-dark); margin-bottom:0.5rem;">Message Sent!</h3>
+                        <p style="color:var(--text-light);">Thank you for getting in touch. We'll get back to you shortly.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-about">
+                <h3>Wensleydale Ice Cream Limited</h3>
+                <p>
+                    Handcrafted artisan ice cream from the heart of the Yorkshire Dales. Made with fresh local ingredients and a passion for quality since 2012.
+                </p>
+                <p style="margin-top:1rem;">
+                    <strong>Company Number:</strong> 08074800<br>
+                    <strong>Registered Office:</strong> C/O TENIGO LTD, THE OLD CALF HOUSE MANOR FARM, THORNTON RUST, LEYBURN, NORTH YORKSHIRE, UNITED KINGDOM, DL8 3AN<br>
+                    <strong>Email:</strong> contato@jornadadapazespiritual.site
+                </p>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <a href="#home">Home</a>
+                <a href="#about">About Us</a>
+                <a href="#products">Our Flavours</a>
+                <a href="#testimonials">Reviews</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div class="footer-links">
+                <h4>Legal</h4>
+                <a href="#" onclick="openModal('privacy'); return false;">Privacy Policy</a>
+                <a href="#" onclick="openModal('terms'); return false;">Terms of Use</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p class="footer-legal">
+                <strong>WENSLEYDALE ICE CREAM LIMITED</strong> | Company No. 08074800 | C/O TENIGO LTD, THE OLD CALF HOUSE MANOR FARM, THORNTON RUST, LEYBURN, NORTH YORKSHIRE, UNITED KINGDOM, DL8 3AN | contato@jornadadapazespiritual.site
+            </p>
+            <p class="footer-copyright">© 2026 WENSLEYDALE ICE CREAM LIMITED - All rights reserved</p>
+        </div>
+    </footer>
+
+    <!-- Privacy Policy Modal -->
+    <div class="modal-overlay" id="privacyModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('privacy')">×</button>
+            <h2>Privacy Policy</h2>
+            <p><strong>Last updated:</strong> January 2026</p>
+            <p><strong>WENSLEYDALE ICE CREAM LIMITED</strong> (Company No. 08074800), registered at C/O TENIGO LTD, THE OLD CALF HOUSE MANOR FARM, THORNTON RUST, LEYBURN, NORTH YORKSHIRE, UNITED KINGDOM, DL8 3AN ("we", "us", "our") is committed to protecting your privacy.</p>
+
+            <h3>1. Information We Collect</h3>
+            <p>We may collect personal information that you voluntarily provide to us when you contact us through our website, including your name, email address, and any message content you submit through our contact form.</p>
+
+            <h3>2. How We Use Your Information</h3>
+            <p>We use the information we collect to respond to your enquiries, provide customer service, send you information about our products and services (only with your consent), and improve our website and offerings.</p>
+
+            <h3>3. Data Storage and Security</h3>
+            <p>We implement appropriate technical and organisational measures to protect your personal data against unauthorised access, alteration, disclosure, or destruction. Your data is stored securely within the United Kingdom.</p>
+
+            <h3>4. Sharing Your Information</h3>
+            <p>We do not sell, trade, or otherwise transfer your personal information to third parties. This does not include trusted service providers who assist us in operating our business, provided they agree to keep your information confidential.</p>
+
+            <h3>5. Cookies</h3>
+            <p>Our website may use cookies to enhance your browsing experience. You can choose to disable cookies through your browser settings, though this may affect your experience on our site.</p>
+
+            <h3>6. Your Rights</h3>
+            <p>Under the UK General Data Protection Regulation (UK GDPR), you have the right to access, rectify, erase, or restrict the processing of your personal data. You may also request data portability or object to processing.</p>
+
+            <h3>7. Contact Us</h3>
+            <p>If you have any questions about this Privacy Policy, please contact us at:<br>
+            <strong>WENSLEYDALE ICE CREAM LIMITED</strong><br>
+            C/O TENIGO LTD, THE OLD CALF HOUSE MANOR FARM, THORNTON RUST, LEYBURN, NORTH YORKSHIRE, UNITED KINGDOM, DL8 3AN<br>
+            Email: contato@jornadadapazespiritual.site</p>
+        </div>
+    </div>
+
+    <!-- Terms of Use Modal -->
+    <div class="modal-overlay" id="termsModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('terms')">×</button>
+            <h2>Terms of Use</h2>
+            <p><strong>Last updated:</strong> January 2026</p>
+            <p>These Terms of Use govern your use of the website operated by <strong>WENSLEYDALE ICE CREAM LIMITED</strong> (Company No. 08074800), registered at C/O TENIGO LTD, THE OLD CALF HOUSE MANOR FARM, THORNTON RUST, LEYBURN, NORTH YORKSHIRE, UNITED KINGDOM, DL8 3AN.</p>
+
+            <h3>1. Acceptance of Terms</h3>
+            <p>By accessing and using this website, you accept and agree to be bound by these Terms of Use. If you do not agree with any part of these terms, you should not use this website.</p>
+
+            <h3>2. Use of Website</h3>
+            <p>This website is provided for informational purposes about our products and services. You agree to use the website only for lawful purposes and in a manner that does not infringe upon the rights of others.</p>
+
+            <h3>3. Intellectual Property</h3>
+            <p>All content on this website, including text, images, logos, and design, is the property of WENSLEYDALE ICE CREAM LIMITED and is protected by United Kingdom intellectual property laws. You may not reproduce, distribute, or create derivative works without our express written permission.</p>
+
+            <h3>4. Product Information</h3>
+            <p>While we strive to ensure that all product descriptions and information on our website are accurate, we do not warrant that such information is complete, reliable, or error-free. Flavour availability may vary.</p>
+
+            <h3>5. Limitation of Liability</h3>
+            <p>WENSLEYDALE ICE CREAM LIMITED shall not be liable for any indirect, incidental, or consequential damages arising from your use of this website. Our total liability shall not exceed the amount paid by you, if any, for accessing this site.</p>
+
+            <h3>6. Governing Law</h3>
+            <p>These Terms of Use are governed by and construed in accordance with the laws of England and Wales. Any disputes shall be subject to the exclusive jurisdiction of the courts of England and Wales.</p>
+
+            <h3>7. Changes to Terms</h3>
+            <p>We reserve the right to modify these Terms of Use at any time. Changes will be effective immediately upon posting to this website. Your continued use of the website constitutes acceptance of any modified terms.</p>
+
+            <h3>8. Contact</h3>
+            <p>For any questions regarding these Terms of Use, please contact:<br>
+            <strong>WENSLEYDALE ICE CREAM LIMITED</strong><br>
+            C/O TENIGO LTD, THE OLD CALF HOUSE MANOR FARM, THORNTON RUST, LEYBURN, NORTH YORKSHIRE, UNITED KINGDOM, DL8 3AN<br>
+            Email: contato@jornadadapazespiritual.site</p>
+        </div>
+    </div>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Contact Form
+        const contactForm = document.getElementById('contactForm');
+        const formSuccess = document.getElementById('formSuccess');
+
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            contactForm.style.display = 'none';
+            formSuccess.style.display = 'block';
+            setTimeout(() => {
+                contactForm.style.display = 'block';
+                formSuccess.style.display = 'none';
+                contactForm.reset();
+            }, 4000);
+        });
+
+        // Modal Functions
+        function openModal(type) {
+            if (type === 'privacy') {
+                document.getElementById('privacyModal').classList.add('active');
+            } else if (type === 'terms') {
+                document.getElementById('termsModal').classList.add('active');
+            }
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(type) {
+            if (type === 'privacy') {
+                document.getElementById('privacyModal').classList.remove('active');
+            } else if (type === 'terms') {
+                document.getElementById('termsModal').classList.remove('active');
+            }
+            document.body.style.overflow = '';
+        }
+
+        // Close modal when clicking overlay
+        document.querySelectorAll('.modal-overlay').forEach(modal => {
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+        });
+
+        // Smooth reveal on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.product-card, .testimonial-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+
+
+</body></html>
