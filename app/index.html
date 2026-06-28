@@ -1,0 +1,546 @@
+<!DOCTYPE html><html><head><meta name="x-poe-datastore-behavior" content="local_only"><meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://code.jquery.com https://unpkg.com https://d3js.org https://threejs.org https://cdn.plot.ly https://stackpath.bootstrapcdn.com https://maps.googleapis.com https://cdn.tailwindcss.com https://ajax.googleapis.com https://kit.fontawesome.com https://cdn.datatables.net https://maxcdn.bootstrapcdn.com https://code.highcharts.com https://tako-static-assets-production.s3.amazonaws.com https://www.youtube.com https://fonts.googleapis.com https://fonts.gstatic.com https://pfst.cf2.poecdn.net https://puc.poecdn.net https://i.imgur.com https://wikimedia.org https://*.icons8.com https://*.giphy.com https://picsum.photos https://images.unsplash.com; frame-src 'self' https://www.youtube.com https://trytako.com; child-src 'self'; manifest-src 'self'; worker-src 'self'; upgrade-insecure-requests; block-all-mixed-content;"><meta http-equiv="x-dns-prefetch-control" content="off"><script src="https://puc.poecdn.net/authenticated_preview_page/standard.3ef2c256959faf5a756d.js"></script>
+    <meta charset="utf-8">
+    <title>Poe</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+  <script src="https://puc.poecdn.net/authenticated_preview_page/disableWebRTC.9710cebe07429a9e8e06.js"></script><meta name="x-poe-allow-downloads" content="true"><meta name="x-poe-datastore-behavior" content="disabled"><script src="https://puc.poecdn.net/authenticated_preview_page/tw.50ec1b0612bf5b0c30a5.js"></script><script src="https://puc.poecdn.net/authenticated_preview_page/deps.faccd16000d314dc16d5.js"></script><script src="https://puc.poecdn.net/authenticated_preview_page/exports.b0f0f482cdeb5302b0b9.js"></script><script src="https://puc.poecdn.net/authenticated_preview_page/renderer.75c73ae6b4235f62945a.js"></script><script>Object.defineProperty(exports, "__esModule", {value: true}); function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }var _react = require('react'); var _react2 = _interopRequireDefault(_react);
+var _framermotion = require('framer-motion');
+
+
+
+
+var _lucidereact = require('lucide-react');
+
+ function QuaresmaApp() {
+  const [tab, setTab] = _react.useState.call(void 0, 'home');
+  const [activeGuide, setActiveGuide] = _react.useState.call(void 0, null);
+  const [activePrayer, setActivePrayer] = _react.useState.call(void 0, null);
+  const [completed, setCompleted] = _react.useState.call(void 0, {});
+  const [currentDay, setCurrentDay] = _react.useState.call(void 0, 7);
+  const [breathing, setBreathing] = _react.useState.call(void 0, false);
+
+  const categories = [
+    {
+      id: 'riquezas',
+      title: 'Riquezas e Prosperidade',
+      short: 'Prosperidade',
+      desc: 'Orações para abrir caminhos de abundância e provisão divina',
+      icon: _lucidereact.Coins,
+      accent: '#d4af37',
+      glow: 'rgba(212,175,55,0.35)',
+      prayers: [
+        {
+          title: 'Oração da Providência Divina',
+          duration: '4 min',
+          intro: 'Para confiar a Deus suas necessidades materiais.',
+          verse: '"Buscai primeiro o Reino de Deus, e tudo o mais vos será acrescentado." — Mt 6,33',
+          body: `Senhor, Pai de toda providência,\nque alimentas as aves do céu\ne vestes os lírios do campo,\nolha com bondade para mim.\n\nPor intercessão de São Padre Pio,\nabençoa o trabalho das minhas mãos,\nmultiplica o pouco que tenho\ne afasta de mim a angústia da escassez.\n\nQue eu nunca faça do dinheiro o meu deus,\nmas que tudo o que receber\nseja instrumento de bênção,\npara mim e para os necessitados.\n\nConfio em Ti, Senhor.\nReza, espera e não te preocupes.\nAmém.`
+        },
+        {
+          title: 'Novena da Abundância',
+          duration: '5 min',
+          intro: 'Inspirada na confiança total de Padre Pio na Providência.',
+          verse: '"O Senhor é o meu pastor, nada me faltará." — Sl 23,1',
+          body: `Glorioso São Padre Pio,\nque viveste pobre mas nunca te faltou nada\nporque puseste tua confiança em Deus,\nintercede por mim.\n\nPeço a graça de uma vida digna,\nde pão sobre a mesa,\nde portas que se abram ao meu esforço\ne de sabedoria para administrar os bens.\n\nLivra-me da ganância e da preguiça,\ndá-me generosidade e prudência,\npara que a prosperidade que receber\nse converta em louvor a Deus.\n\nAmém.`
+        },
+        {
+          title: 'Oração pelo Trabalho',
+          duration: '3 min',
+          intro: 'Para santificar o esforço diário e atrair frutos.',
+          verse: '"O trabalhador é digno do seu salário." — Lc 10,7',
+          body: `Deus do trabalho e do descanso,\nentrego em Tuas mãos minhas tarefas,\nmeus projetos e minhas decisões.\n\nQue por intercessão de Padre Pio\neu encontre portas abertas,\nclientes e oportunidades,\nreconhecimento justo pelo meu suor.\n\nFaze do meu trabalho uma oração,\ne da minha rotina um caminho de santidade.\nAmém.`
+        }
+      ]
+    },
+    {
+      id: 'saude',
+      title: 'Saúde e Cura',
+      short: 'Saúde',
+      desc: 'Orações pela cura do corpo, da alma e do coração ferido',
+      icon: _lucidereact.Heart,
+      accent: '#c97b6e',
+      glow: 'rgba(201,123,110,0.35)',
+      prayers: [
+        {
+          title: 'Oração pela Cura',
+          duration: '4 min',
+          intro: 'Padre Pio foi instrumento de inúmeras curas em vida.',
+          verse: '"Por suas chagas fostes curados." — 1Pd 2,24',
+          body: `Senhor Jesus, médico das almas e dos corpos,\nque curaste os enfermos com tua palavra,\nestende tua mão sobre mim.\n\nPor intercessão de São Padre Pio,\nque carregou em seu corpo tuas chagas,\ncura aquilo que em mim está doente,\nno corpo, na mente e no espírito.\n\nDevolve-me a saúde, se for tua vontade,\ne se a cura tardar,\ndá-me forças para carregar a cruz\ncom amor e esperança.\nAmém.`
+        },
+        {
+          title: 'Oração pela Paz Interior',
+          duration: '3 min',
+          intro: 'Para acalmar a ansiedade e o coração inquieto.',
+          verse: '"Vinde a mim e eu vos aliviarei." — Mt 11,28',
+          body: `Padre Pio, homem de paz,\nensina-me o segredo da serenidade\nno meio das tempestades.\n\nAfasta de mim a ansiedade,\no medo do amanhã\ne o peso das preocupações.\n\nQue eu repita contigo:\n"Reza, espera e não te preocupes."\nE que essa confiança\ncure as feridas da minha alma.\nAmém.`
+        },
+        {
+          title: 'Oração pelos Enfermos',
+          duration: '3 min',
+          intro: 'Para interceder por quem amamos e está doente.',
+          verse: '"Estive enfermo e me visitastes." — Mt 25,36',
+          body: `Glorioso Padre Pio,\nque fundaste a Casa Alívio do Sofrimento,\nintercede por todos os enfermos.\n\nPeço-te de modo especial\npor (diga o nome).\nCobre-o com tua proteção,\nalivia suas dores\ne fortalece sua fé.\n\nQue a Divina Misericórdia\nse derrame sobre todos os que sofrem.\nAmém.`
+        }
+      ]
+    },
+    {
+      id: 'energias',
+      title: 'Energias Positivas e Proteção',
+      short: 'Proteção',
+      desc: 'Orações de proteção espiritual, libertação e luz',
+      icon: _lucidereact.Sun,
+      accent: '#7ba6c9',
+      glow: 'rgba(123,166,201,0.35)',
+      prayers: [
+        {
+          title: 'Oração de Proteção',
+          duration: '4 min',
+          intro: 'O escudo espiritual diário de Padre Pio.',
+          verse: '"O Senhor é a minha luz e a minha salvação." — Sl 27,1',
+          body: `Senhor, sê meu refúgio e fortaleza.\nQue tua luz divina me envolva\ne afaste de mim todo mal.\n\nPor intercessão de São Padre Pio\ne do Anjo da Guarda que sempre o acompanhou,\nprotege minha casa, minha família\ne todos os caminhos que eu percorrer.\n\nAfasta a inveja, a negatividade\ne toda influência do mal.\nQue só o bem e a graça\nhabitem em mim.\nAmém.`
+        },
+        {
+          title: 'Oração ao Anjo da Guarda',
+          duration: '3 min',
+          intro: 'Padre Pio enviava seu anjo para socorrer os fiéis.',
+          verse: '"Aos seus anjos Ele dará ordens a teu respeito." — Sl 91,11',
+          body: `Santo Anjo do Senhor,\nmeu zeloso guardador,\ncomo Padre Pio confiava no seu anjo,\neu confio em ti.\n\nIlumina meus pensamentos,\nguarda meus passos,\nafasta de mim as energias sombrias\ne enche meu dia de luz.\n\nSê meu companheiro fiel\nhoje e sempre.\nAmém.`
+        },
+        {
+          title: 'Oração de Libertação',
+          duration: '5 min',
+          intro: 'Para romper correntes e renovar o espírito.',
+          verse: '"Conhecereis a verdade e ela vos libertará." — Jo 8,32',
+          body: `Em nome de Jesus Cristo,\nLuz que vence toda escuridão,\neu me coloco sob tua proteção.\n\nPor intercessão de Padre Pio,\nliberta-me de todo peso,\nde toda mágoa e ressentimento,\nde toda corrente que me prende ao passado.\n\nRenova minha mente,\nacende em mim a esperança\ne faze-me canal da tua paz.\nAmém.`
+        }
+      ]
+    }
+  ];
+
+  const allPrayers = categories.flatMap(c =>
+    c.prayers.map(p => ({ ...p, cat: c.title, accent: c.accent, glow: c.glow, catId: c.id }))
+  );
+
+  const toggleComplete = (key) => setCompleted(prev => ({ ...prev, [key]: !prev[key] }));
+  const totalPrayers = allPrayers.length;
+  const completedCount = Object.values(completed).filter(Boolean).length;
+  const progressPct = Math.round((currentDay / 40) * 100);
+
+  const dailyVerse = {
+    text: 'Reza, espera e não te preocupes. A preocupação não serve para nada. Deus é misericordioso e ouvirá a tua oração.',
+    author: 'São Padre Pio'
+  };
+
+  const serif = { fontFamily: 'Georgia, "Times New Roman", serif' };
+
+  // Ornamental divider
+  const Ornament = ({ color = '#d4af37', size = 14 }) => (
+    _react2.default.createElement('div', { className: "flex items-center justify-center gap-3 opacity-70"    ,}
+      , _react2.default.createElement('div', { className: "h-px w-10" , style: { background: `linear-gradient(to right, transparent, ${color})` },} )
+      , _react2.default.createElement(_lucidereact.Cross, { size: size, style: { color },} )
+      , _react2.default.createElement('div', { className: "h-px w-10" , style: { background: `linear-gradient(to left, transparent, ${color})` },} )
+    )
+  );
+
+  // ---------- PRAYER READER ----------
+  if (activePrayer) {
+    const p = activePrayer;
+    const key = `${p.catId}-${p.title}`;
+    return (
+      _react2.default.createElement('div', { className: "min-h-screen flex justify-center"  , style: { background: 'radial-gradient(circle at 50% 0%, #1c1814, #0d0b08)' },}
+        , _react2.default.createElement('div', { className: "w-full max-w-md flex flex-col min-h-screen relative"     ,}
+          /* Top bar */
+          , _react2.default.createElement('div', { className: "flex items-center justify-between px-5 py-4 sticky top-0 z-20"       ,
+            style: { background: 'linear-gradient(to bottom, rgba(13,11,8,0.95), transparent)' },}
+            , _react2.default.createElement('button', { onClick: () => { setActivePrayer(null); setBreathing(false); },
+              className: "flex items-center gap-1 text-stone-400 hover:text-amber-300 transition"     ,}
+              , _react2.default.createElement(_lucidereact.ChevronLeft, { size: 20,} ), " " , _react2.default.createElement('span', { className: "text-sm tracking-wide" ,}, "Voltar")
+            )
+            , _react2.default.createElement('button', { onClick: () => toggleComplete(key),
+              className: `flex items-center gap-1.5 text-xs px-3.5 py-1.5 rounded-full border transition tracking-wide ${
+                completed[key] ? 'border-amber-400 text-amber-300' : 'border-stone-700 text-stone-500'
+              }`, style: completed[key] ? { background: 'rgba(212,175,55,0.1)' } : {},}
+              , _react2.default.createElement(_lucidereact.Check, { size: 14,} ), " " , completed[key] ? 'Rezada' : 'Marcar'
+            )
+          )
+
+          , _react2.default.createElement('div', { className: "flex-1 overflow-y-auto px-8 pb-16"   ,}
+            , _react2.default.createElement('div', { className: "text-center mb-9 mt-2"  ,}
+              , _react2.default.createElement(_framermotion.motion.div, { initial: { scale: 0.8, opacity: 0 }, animate: { scale: 1, opacity: 1 }, transition: { duration: 0.5 },
+                className: "w-14 h-14 rounded-full mx-auto mb-5 flex items-center justify-center"       ,
+                style: { background: `radial-gradient(circle, ${p.glow}, transparent)`, border: `1px solid ${p.accent}40` },}
+                , _react2.default.createElement(_lucidereact.Cross, { size: 24, style: { color: p.accent },} )
+              )
+              , _react2.default.createElement('p', { className: "text-[10px] tracking-[4px] uppercase mb-3"   , style: { color: p.accent },}, p.cat)
+              , _react2.default.createElement('h1', { className: "text-2xl leading-snug mb-4 text-stone-100 px-2"    , style: serif,}, p.title)
+              , _react2.default.createElement('div', { className: "flex items-center justify-center gap-1.5 text-stone-500 text-xs tracking-wide"      ,}
+                , _react2.default.createElement(_lucidereact.Clock, { size: 12,} ), " " , p.duration, " de oração"
+              )
+            )
+
+            /* Breathing orb */
+            , _react2.default.createElement('div', { className: "flex flex-col items-center mb-9"   ,}
+              , _react2.default.createElement('div', { className: "relative w-28 h-28 flex items-center justify-center mb-3"      ,}
+                , _react2.default.createElement(_framermotion.motion.div, {
+                  animate: breathing ? { scale: [1, 1.5, 1.5, 1], opacity: [0.3, 0.6, 0.6, 0.3] } : { scale: 1, opacity: 0.4 },
+                  transition: breathing ? { duration: 8, repeat: Infinity, ease: 'easeInOut' } : {},
+                  className: "absolute w-28 h-28 rounded-full"   ,
+                  style: { background: `radial-gradient(circle, ${p.glow}, transparent 70%)` },} )
+                , _react2.default.createElement(_framermotion.motion.div, {
+                  animate: breathing ? { scale: [1, 1.25, 1.25, 1] } : { scale: 1 },
+                  transition: breathing ? { duration: 8, repeat: Infinity, ease: 'easeInOut' } : {},
+                  className: "w-16 h-16 rounded-full flex items-center justify-center"     ,
+                  style: { background: `linear-gradient(135deg, ${p.accent}, ${p.accent}88)`, boxShadow: `0 0 30px ${p.glow}` },}
+                  , _react2.default.createElement(_lucidereact.Cross, { size: 20, className: "text-stone-900/70",} )
+                )
+              )
+              , _react2.default.createElement('button', { onClick: () => setBreathing(!breathing),
+                className: "flex items-center gap-2 text-xs text-stone-500 hover:text-amber-300 transition tracking-wide"       ,}
+                , breathing ? _react2.default.createElement(_lucidereact.Pause, { size: 13,} ) : _react2.default.createElement(_lucidereact.Play, { size: 13,} )
+                , breathing ? 'Pausar respiração' : 'Respiração guiada'
+              )
+            )
+
+            , _react2.default.createElement('div', { className: "relative px-2 mb-8"  ,}
+              , _react2.default.createElement(_lucidereact.Quote, { size: 18, className: "mb-2", style: { color: p.accent, opacity: 0.7 },} )
+              , _react2.default.createElement('p', { className: "italic text-stone-400 text-sm leading-relaxed"   , style: serif,}, p.verse)
+            )
+
+            , _react2.default.createElement('div', { className: "rounded-2xl p-7 mb-8"  ,
+              style: { background: 'rgba(255,255,255,0.025)', border: '1px solid rgba(212,175,55,0.12)' },}
+              , _react2.default.createElement('p', { className: "whitespace-pre-line leading-[2.1] text-[17px] text-stone-200 text-center"    , style: serif,}
+                , p.body
+              )
+            )
+
+            , _react2.default.createElement(Ornament, { color: p.accent,} )
+          )
+        )
+      )
+    );
+  }
+
+  // ---------- GUIDE DETAIL ----------
+  if (activeGuide) {
+    const c = activeGuide;
+    const Icon = c.icon;
+    return (
+      _react2.default.createElement('div', { className: "min-h-screen pb-28" , style: { background: 'radial-gradient(circle at 50% -10%, #1c1814, #0d0b08)' },}
+        , _react2.default.createElement('div', { className: "w-full max-w-md mx-auto"  ,}
+          , _react2.default.createElement('div', { className: "px-5 py-4 sticky top-0 z-20"    ,
+            style: { background: 'linear-gradient(to bottom, rgba(13,11,8,0.95), transparent)' },}
+            , _react2.default.createElement('button', { onClick: () => setActiveGuide(null),
+              className: "flex items-center gap-1 text-stone-400 hover:text-amber-300 transition"     ,}
+              , _react2.default.createElement(_lucidereact.ChevronLeft, { size: 20,} ), " " , _react2.default.createElement('span', { className: "text-sm tracking-wide" ,}, "Início")
+            )
+          )
+
+          , _react2.default.createElement('div', { className: "px-8 pt-6 pb-10 text-center relative"    ,}
+            , _react2.default.createElement('div', { className: "absolute inset-0 flex items-start justify-center pointer-events-none"     ,}
+              , _react2.default.createElement('div', { className: "w-56 h-56 rounded-full blur-3xl opacity-30"    , style: { background: c.glow },} )
+            )
+            , _react2.default.createElement('div', { className: "relative",}
+              , _react2.default.createElement(_framermotion.motion.div, { initial: { scale: 0.7, opacity: 0 }, animate: { scale: 1, opacity: 1 }, transition: { duration: 0.5 },
+                className: "w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6"       ,
+                style: { background: `radial-gradient(circle, ${c.glow}, rgba(255,255,255,0.02))`, border: `1px solid ${c.accent}40` },}
+                , _react2.default.createElement(Icon, { size: 32, style: { color: c.accent },} )
+              )
+              , _react2.default.createElement('h1', { className: "text-3xl text-stone-100 mb-3 leading-tight"   , style: serif,}, c.title)
+              , _react2.default.createElement('p', { className: "text-stone-400 text-sm max-w-xs mx-auto leading-relaxed"    ,}, c.desc)
+            )
+          )
+
+          , _react2.default.createElement('div', { className: "px-5 space-y-3" ,}
+            , c.prayers.map((p, i) => {
+              const key = `${c.id}-${p.title}`;
+              const done = completed[key];
+              return (
+                _react2.default.createElement(_framermotion.motion.button, {
+                  key: i,
+                  initial: { opacity: 0, y: 14 },
+                  animate: { opacity: 1, y: 0 },
+                  transition: { delay: i * 0.08 },
+                  onClick: () => setActivePrayer({ ...p, cat: c.title, accent: c.accent, glow: c.glow, catId: c.id }),
+                  className: "w-full rounded-2xl p-5 text-left flex items-start gap-4 transition hover:scale-[1.01]"        ,
+                  style: { background: 'rgba(255,255,255,0.03)', border: `1px solid ${done ? c.accent + '40' : 'rgba(255,255,255,0.06)'}` },}
+                  , _react2.default.createElement('div', { className: "w-11 h-11 rounded-full flex items-center justify-center shrink-0 mt-0.5"       ,
+                    style: { background: `${c.accent}1a`, border: `1px solid ${c.accent}30` },}
+                    , done
+                      ? _react2.default.createElement(_lucidereact.Check, { size: 18, style: { color: c.accent },} )
+                      : _react2.default.createElement('span', { className: "text-lg", style: { ...serif, color: c.accent },}, i + 1)
+                  )
+                  , _react2.default.createElement('div', { className: "flex-1",}
+                    , _react2.default.createElement('h3', { className: "text-stone-100 mb-1.5" , style: { ...serif, fontSize: '1.12rem' },}, p.title)
+                    , _react2.default.createElement('p', { className: "text-stone-500 text-xs mb-2.5 leading-relaxed"   ,}, p.intro)
+                    , _react2.default.createElement('span', { className: "inline-flex items-center gap-1 text-[11px] tracking-wide"    , style: { color: c.accent },}
+                      , _react2.default.createElement(_lucidereact.Clock, { size: 11,} ), " " , p.duration
+                    )
+                  )
+                  , _react2.default.createElement(_lucidereact.ChevronRight, { size: 18, className: "text-stone-600 mt-1" ,} )
+                )
+              );
+            })
+          )
+        )
+        , _react2.default.createElement(BottomNav, { tab: tab, setTab: (t) => { setTab(t); setActiveGuide(null); },} )
+      )
+    );
+  }
+
+  // ---------- MAIN ----------
+  return (
+    _react2.default.createElement('div', { className: "min-h-screen pb-28" , style: { background: 'radial-gradient(circle at 50% -5%, #1c1814, #0a0907)', WebkitFontSmoothing: 'antialiased' },}
+      , _react2.default.createElement('div', { className: "w-full max-w-md mx-auto"  ,}
+        , _react2.default.createElement(_framermotion.AnimatePresence, { mode: "wait",}
+
+          /* HOME */
+          , tab === 'home' && (
+            _react2.default.createElement(_framermotion.motion.div, { key: "home", initial: { opacity: 0 }, animate: { opacity: 1 }, exit: { opacity: 0 },}
+              /* Hero */
+              , _react2.default.createElement('div', { className: "relative px-8 pt-14 pb-8 overflow-hidden"    ,}
+                , _react2.default.createElement('div', { className: "absolute inset-0 flex items-center justify-center pointer-events-none"     ,}
+                  , _react2.default.createElement(_lucidereact.Cross, { size: 340, className: "opacity-[0.035]", style: { color: '#d4af37' },} )
+                )
+                , _react2.default.createElement('div', { className: "absolute -top-10 left-1/2 -translate-x-1/2 w-72 h-72 rounded-full blur-3xl opacity-20"        , style: { background: 'rgba(212,175,55,0.4)' },} )
+                , _react2.default.createElement('div', { className: "relative text-center" ,}
+                  , _react2.default.createElement('div', { className: "flex justify-center mb-4"  ,}
+                    , _react2.default.createElement(Ornament, null )
+                  )
+                  , _react2.default.createElement('p', { className: "text-amber-400/90 text-[10px] tracking-[4px] uppercase mb-3"    ,}, "Quaresma do Padre Pio"   )
+                  , _react2.default.createElement('h1', { className: "text-stone-100 text-4xl mb-1 leading-tight"   , style: serif,}, "A paz esteja"  )
+                  , _react2.default.createElement('h1', { className: "text-amber-300 text-4xl italic mb-6 leading-tight"    , style: serif,}, "com você" )
+                )
+
+                /* Progress card */
+                , _react2.default.createElement('div', { className: "relative rounded-3xl p-5"  ,
+                  style: { background: 'linear-gradient(145deg, rgba(255,255,255,0.05), rgba(255,255,255,0.01))', border: '1px solid rgba(212,175,55,0.18)' },}
+                  , _react2.default.createElement('div', { className: "flex items-center justify-between mb-3"   ,}
+                    , _react2.default.createElement('span', { className: "text-stone-400 text-xs flex items-center gap-1.5 tracking-wide"     ,}
+                      , _react2.default.createElement(_lucidereact.Calendar, { size: 13, className: "text-amber-400",} ), " Jornada de 40 dias"
+                    )
+                    , _react2.default.createElement('span', { className: "text-amber-300 text-xs" , style: serif,}, "Dia " , currentDay, " · 40"  )
+                  )
+                  , _react2.default.createElement('div', { className: "h-2.5 rounded-full overflow-hidden"  , style: { background: 'rgba(255,255,255,0.07)' },}
+                    , _react2.default.createElement(_framermotion.motion.div, { initial: { width: 0 }, animate: { width: `${progressPct}%` },
+                      transition: { duration: 1.1, ease: 'easeOut' },
+                      className: "h-full rounded-full" ,
+                      style: { background: 'linear-gradient(to right, #b8923f, #f1d27a)', boxShadow: '0 0 12px rgba(212,175,55,0.5)' },} )
+                  )
+                  , _react2.default.createElement('div', { className: "flex gap-2 mt-4"  ,}
+                    , _react2.default.createElement('button', { onClick: () => setCurrentDay(d => Math.max(1, d - 1)),
+                      className: "flex-1 text-xs text-stone-400 rounded-xl py-2 transition hover:text-stone-200"      ,
+                      style: { border: '1px solid rgba(255,255,255,0.1)' },}, "Dia anterior" )
+                    , _react2.default.createElement('button', { onClick: () => setCurrentDay(d => Math.min(40, d + 1)),
+                      className: "flex-1 text-xs text-stone-900 rounded-xl py-2 transition font-medium"      ,
+                      style: { background: 'linear-gradient(135deg, #d4af37, #f1d27a)', boxShadow: '0 4px 14px rgba(212,175,55,0.35)' },}, "Concluir hoje" )
+                  )
+                )
+              )
+
+              /* Daily verse */
+              , _react2.default.createElement('div', { className: "px-5 mb-8" ,}
+                , _react2.default.createElement('div', { className: "rounded-3xl p-6 text-center relative overflow-hidden"    ,
+                  style: { background: 'linear-gradient(145deg, rgba(212,175,55,0.08), rgba(255,255,255,0.01))', border: '1px solid rgba(212,175,55,0.15)' },}
+                  , _react2.default.createElement(_lucidereact.Quote, { size: 22, className: "mx-auto mb-3 text-amber-400/80"  ,} )
+                  , _react2.default.createElement('p', { className: "text-stone-200 italic leading-relaxed mb-4 text-[15px]"    , style: serif,}, "\""
+                    , dailyVerse.text, "\""
+                  )
+                  , _react2.default.createElement('div', { className: "flex justify-center mb-3"  ,}, _react2.default.createElement(Ornament, { size: 11,} ))
+                  , _react2.default.createElement('p', { className: "text-[10px] tracking-[3px] uppercase text-amber-400/90"   ,}, dailyVerse.author)
+                )
+              )
+
+              /* Intentions */
+              , _react2.default.createElement('div', { className: "px-5",}
+                , _react2.default.createElement('h2', { className: "text-stone-100 text-xl mb-1 px-1"   , style: serif,}, "Orações por intenção"  )
+                , _react2.default.createElement('p', { className: "text-stone-500 text-xs mb-5 px-1"   ,}, "Escolha o caminho da sua oração de hoje"       )
+                , _react2.default.createElement('div', { className: "space-y-3.5",}
+                  , categories.map((c, i) => {
+                    const Icon = c.icon;
+                    const done = c.prayers.filter(p => completed[`${c.id}-${p.title}`]).length;
+                    return (
+                      _react2.default.createElement(_framermotion.motion.button, {
+                        key: c.id,
+                        initial: { opacity: 0, x: -16 },
+                        animate: { opacity: 1, x: 0 },
+                        transition: { delay: i * 0.1 },
+                        onClick: () => setActiveGuide(c),
+                        className: "w-full rounded-3xl p-4 flex items-center gap-4 text-left transition hover:scale-[1.01] relative overflow-hidden"          ,
+                        style: { background: 'rgba(255,255,255,0.035)', border: '1px solid rgba(255,255,255,0.07)' },}
+                        , _react2.default.createElement('div', { className: "absolute right-0 top-0 w-28 h-28 rounded-full blur-2xl opacity-20"       , style: { background: c.glow },} )
+                        , _react2.default.createElement('div', { className: "w-14 h-14 rounded-2xl flex items-center justify-center shrink-0 relative"       ,
+                          style: { background: `${c.accent}18`, border: `1px solid ${c.accent}35` },}
+                          , _react2.default.createElement(Icon, { size: 24, style: { color: c.accent },} )
+                        )
+                        , _react2.default.createElement('div', { className: "flex-1 relative" ,}
+                          , _react2.default.createElement('h3', { className: "text-stone-100 mb-0.5" , style: { ...serif, fontSize: '1.1rem' },}, c.title)
+                          , _react2.default.createElement('p', { className: "text-stone-500 text-xs" ,}, done, "/", c.prayers.length, " rezadas · "   , c.prayers.length, " orações" )
+                        )
+                        , _react2.default.createElement(_lucidereact.ChevronRight, { size: 18, className: "text-stone-600 relative" ,} )
+                      )
+                    );
+                  })
+                )
+              )
+            )
+          )
+
+          /* PRAYERS */
+          , tab === 'prayers' && (
+            _react2.default.createElement(_framermotion.motion.div, { key: "prayers", initial: { opacity: 0 }, animate: { opacity: 1 }, exit: { opacity: 0 },}
+              , _react2.default.createElement('div', { className: "px-8 pt-14 pb-7 text-center relative"    ,}
+                , _react2.default.createElement('div', { className: "absolute -top-6 left-1/2 -translate-x-1/2 w-60 h-60 rounded-full blur-3xl opacity-15"        , style: { background: 'rgba(212,175,55,0.4)' },} )
+                , _react2.default.createElement('div', { className: "relative",}
+                  , _react2.default.createElement('div', { className: "flex justify-center mb-4"  ,}, _react2.default.createElement(Ornament, null ))
+                  , _react2.default.createElement('p', { className: "text-amber-400/90 text-[10px] tracking-[4px] uppercase mb-2"    ,}, "Biblioteca devocional" )
+                  , _react2.default.createElement('h1', { className: "text-stone-100 text-3xl mb-1"  , style: serif,}, "Todas as orações"  )
+                  , _react2.default.createElement('p', { className: "text-stone-500 text-sm" ,}, totalPrayers, " orações · "   , completedCount, " rezadas" )
+                )
+              )
+              , _react2.default.createElement('div', { className: "px-5 space-y-3" ,}
+                , allPrayers.map((p, i) => {
+                  const key = `${p.catId}-${p.title}`;
+                  return (
+                    _react2.default.createElement(_framermotion.motion.button, {
+                      key: i,
+                      initial: { opacity: 0, y: 10 },
+                      animate: { opacity: 1, y: 0 },
+                      transition: { delay: i * 0.05 },
+                      onClick: () => setActivePrayer(p),
+                      className: "w-full rounded-2xl p-4 flex items-center gap-4 text-left transition hover:scale-[1.01]"        ,
+                      style: { background: 'rgba(255,255,255,0.035)', border: '1px solid rgba(255,255,255,0.06)' },}
+                      , _react2.default.createElement('div', { className: "w-1 h-12 rounded-full shrink-0"   , style: { background: p.accent, boxShadow: `0 0 10px ${p.glow}` },} )
+                      , _react2.default.createElement('div', { className: "flex-1",}
+                        , _react2.default.createElement('h3', { className: "text-stone-100 mb-0.5" , style: { ...serif, fontSize: '1.05rem' },}, p.title)
+                        , _react2.default.createElement('p', { className: "text-stone-500 text-xs" ,}, p.cat)
+                      )
+                      , completed[key] && _react2.default.createElement(_lucidereact.Check, { size: 16, style: { color: p.accent },} )
+                      , _react2.default.createElement('span', { className: "text-[11px] text-stone-500 flex items-center gap-1"    ,}, _react2.default.createElement(_lucidereact.Clock, { size: 11,} ), p.duration)
+                    )
+                  );
+                })
+              )
+            )
+          )
+
+          /* PROGRESS */
+          , tab === 'progress' && (
+            _react2.default.createElement(_framermotion.motion.div, { key: "progress", initial: { opacity: 0 }, animate: { opacity: 1 }, exit: { opacity: 0 },}
+              , _react2.default.createElement('div', { className: "px-8 pt-14 pb-6 text-center relative"    ,}
+                , _react2.default.createElement('div', { className: "flex justify-center mb-4"  ,}, _react2.default.createElement(Ornament, null ))
+                , _react2.default.createElement('p', { className: "text-amber-400/90 text-[10px] tracking-[4px] uppercase mb-2"    ,}, "Seu caminho" )
+                , _react2.default.createElement('h1', { className: "text-stone-100 text-3xl" , style: serif,}, "Jornada espiritual" )
+              )
+
+              , _react2.default.createElement('div', { className: "px-5",}
+                , _react2.default.createElement('div', { className: "rounded-3xl p-8 text-center relative overflow-hidden mb-4"     ,
+                  style: { background: 'linear-gradient(145deg, rgba(212,175,55,0.1), rgba(255,255,255,0.01))', border: '1px solid rgba(212,175,55,0.18)' },}
+                  , _react2.default.createElement('div', { className: "absolute -top-10 left-1/2 -translate-x-1/2 w-52 h-52 rounded-full blur-3xl opacity-25"        , style: { background: 'rgba(212,175,55,0.5)' },} )
+                  , _react2.default.createElement('div', { className: "relative",}
+                    , _react2.default.createElement('div', { className: "relative w-36 h-36 mx-auto mb-5"    ,}
+                      , _react2.default.createElement('svg', { className: "w-full h-full -rotate-90"  , viewBox: "0 0 100 100"   ,}
+                        , _react2.default.createElement('circle', { cx: "50", cy: "50", r: "44", fill: "none", stroke: "rgba(255,255,255,0.08)", strokeWidth: "6",} )
+                        , _react2.default.createElement(_framermotion.motion.circle, { cx: "50", cy: "50", r: "44", fill: "none", stroke: "#d4af37", strokeWidth: "6",
+                          strokeLinecap: "round", strokeDasharray: 276,
+                          initial: { strokeDashoffset: 276 },
+                          animate: { strokeDashoffset: 276 - (276 * progressPct) / 100 },
+                          transition: { duration: 1.3, ease: 'easeOut' },
+                          style: { filter: 'drop-shadow(0 0 6px rgba(212,175,55,0.6))' },} )
+                      )
+                      , _react2.default.createElement('div', { className: "absolute inset-0 flex flex-col items-center justify-center"     ,}
+                        , _react2.default.createElement('span', { className: "text-amber-300 text-4xl" , style: serif,}, progressPct, "%")
+                        , _react2.default.createElement('span', { className: "text-stone-500 text-[10px] uppercase tracking-[2px]"   ,}, "completo")
+                      )
+                    )
+                    , _react2.default.createElement('p', { className: "text-stone-300 text-sm" ,}, "Você está no "   , _react2.default.createElement('span', { className: "text-amber-300", style: serif,}, "dia " , currentDay), " da sua Quaresma"   )
+                  )
+                )
+
+                , _react2.default.createElement('div', { className: "grid grid-cols-2 gap-3 mb-4"   ,}
+                  , [
+                    { icon: _lucidereact.Sparkles, val: completedCount, label: 'orações rezadas' },
+                    { icon: _lucidereact.Flame, val: currentDay, label: 'dias seguidos' }
+                  ].map((s, i) => {
+                    const Icon = s.icon;
+                    return (
+                      _react2.default.createElement('div', { key: i, className: "rounded-3xl p-6 text-center"  ,
+                        style: { background: 'rgba(255,255,255,0.035)', border: '1px solid rgba(255,255,255,0.06)' },}
+                        , _react2.default.createElement(Icon, { size: 22, className: "text-amber-400 mx-auto mb-2"  ,} )
+                        , _react2.default.createElement('p', { className: "text-3xl text-stone-100" , style: serif,}, s.val)
+                        , _react2.default.createElement('p', { className: "text-stone-500 text-xs mt-0.5"  ,}, s.label)
+                      )
+                    );
+                  })
+                )
+
+                , _react2.default.createElement('div', { className: "rounded-3xl p-6" ,
+                  style: { background: 'rgba(255,255,255,0.035)', border: '1px solid rgba(255,255,255,0.06)' },}
+                  , _react2.default.createElement('h3', { className: "text-stone-100 mb-4 flex items-center gap-2"    , style: serif,}
+                    , _react2.default.createElement(_lucidereact.Award, { size: 18, className: "text-amber-400",} ), " Marcos da jornada"
+                  )
+                  , [
+                    { d: 7, label: 'Primeira semana de oração' },
+                    { d: 20, label: 'Metade do caminho' },
+                    { d: 33, label: 'Reta final rumo à Páscoa' },
+                    { d: 40, label: 'Quaresma completa' }
+                  ].map((m, i) => {
+                    const reached = currentDay >= m.d;
+                    return (
+                      _react2.default.createElement('div', { key: i, className: "flex items-center gap-3 py-3 border-b last:border-0"     , style: { borderColor: 'rgba(255,255,255,0.06)' },}
+                        , _react2.default.createElement('div', { className: "w-8 h-8 rounded-full flex items-center justify-center shrink-0"      ,
+                          style: reached
+                            ? { background: 'linear-gradient(135deg, #d4af37, #f1d27a)', boxShadow: '0 0 12px rgba(212,175,55,0.4)' }
+                            : { background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)' },}
+                          , reached ? _react2.default.createElement(_lucidereact.Check, { size: 14, className: "text-stone-900",} ) : _react2.default.createElement('span', { className: "text-stone-500 text-xs" ,}, m.d)
+                        )
+                        , _react2.default.createElement('span', { className: `text-sm ${reached ? 'text-stone-200' : 'text-stone-500'}`,}, m.label)
+                        , reached && _react2.default.createElement(_lucidereact.Star, { size: 14, className: "text-amber-400 ml-auto" , fill: "#d4af37",} )
+                      )
+                    );
+                  })
+                )
+              )
+            )
+          )
+
+        )
+      )
+      , _react2.default.createElement(BottomNav, { tab: tab, setTab: setTab,} )
+    )
+  );
+} exports.default = QuaresmaApp;
+
+function BottomNav({ tab, setTab }) {
+  const items = [
+    { id: 'home', icon: _lucidereact.Home, label: 'Início' },
+    { id: 'prayers', icon: _lucidereact.BookOpen, label: 'Orações' },
+    { id: 'progress', icon: _lucidereact.Flame, label: 'Jornada' }
+  ];
+  return (
+    _react2.default.createElement('div', { className: "fixed bottom-0 left-0 right-0 z-30"    ,}
+      , _react2.default.createElement('div', { className: "w-full max-w-md mx-auto px-5 pb-5"    ,}
+        , _react2.default.createElement('div', { className: "flex justify-around py-2.5 rounded-2xl"   ,
+          style: { background: 'rgba(28,24,20,0.85)', backdropFilter: 'blur(16px)', border: '1px solid rgba(212,175,55,0.18)', boxShadow: '0 8px 30px rgba(0,0,0,0.5)' },}
+          , items.map(it => {
+            const Icon = it.icon;
+            const active = tab === it.id;
+            return (
+              _react2.default.createElement('button', { key: it.id, onClick: () => setTab(it.id),
+                className: "flex flex-col items-center gap-1 px-6 py-1.5 transition relative"       ,}
+                , _react2.default.createElement(Icon, { size: 21, style: { color: active ? '#f1d27a' : '#78716c' },} )
+                , _react2.default.createElement('span', { className: "text-[10px] tracking-wide" , style: { color: active ? '#f1d27a' : '#78716c' },}, it.label)
+                , active && _react2.default.createElement(_framermotion.motion.div, { layoutId: "navdot", className: "absolute -top-1 w-1.5 h-1.5 rounded-full"    ,
+                  style: { background: '#d4af37', boxShadow: '0 0 8px rgba(212,175,55,0.8)' },} )
+              )
+            );
+          })
+        )
+      )
+    )
+  );
+}
+</script></head>
+  <body>
+  
+
+<div id="preview-app"></div></body></html>
