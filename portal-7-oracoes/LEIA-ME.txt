@@ -1,0 +1,11 @@
+PORTAL DAS 7 ORAÇÕES — VERSÃO COM FOTOS INCORPORADAS
+
+Abra index.html em um navegador. As fotos foram incorporadas diretamente no HTML: não é necessário enviar a pasta images para exibi-las.
+
+Para editar as fotos: procure ÁREA 1B no CSS e as variáveis --image-hero, --image-sunrise, --image-hands e --image-journal. As imagens estão em base64. Para edições futuras, é mais simples pedir a troca por aqui.
+Para editar as cores: procure ÁREA 1 — CORES.
+Para alterar o suporte: procure ÁREA 2 — SUPORTE.
+Para adicionar áudios MP3 posteriormente: consulte ÁREA 3 — ÁUDIOS MP3 no próprio HTML. Os áudios ainda dependem da pasta audio/.
+
+Não há login, Supabase, chat nem backend.
+As anotações pessoais e o progresso são armazenados no próprio navegador.
